@@ -25,10 +25,10 @@ namespace WeatherDetailsApi.Middlewares
                 var response = context.Response;
                 response.ContentType = "application/json";
                 string responseModel;
-
+                //TODO - add more such cases of custom error caught by the application to show proper message to UI hiding the stack trace
                 switch (error)
                 {
-
+                    //TODO - log exception message, stack trace and other details here
                     case ValidationException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
