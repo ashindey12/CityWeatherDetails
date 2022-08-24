@@ -2,20 +2,22 @@
 <br>
 <div style="text-align: center;" >
     <div>
+        <!-- <form [formGroup]="form"> -->
       <div>
-        <form name="form">
+        
         <label class="key">Enter City Name </label>
             <span>
-            <input name="cityname" type="text" [(ngModel)] ="city" (ngModelChange)="city = $event.toUpperCase()" required minlength = "20" placeholder="Please Enter City"/>
+            <input id="cityname" name ="cityname" type="text" [(ngModel)] ="city" #name="ngModel" (ngModelChange)="city = $event.toUpperCase()" required minlength = "20" placeholder="Please Enter City"/>
             <!-- TODO-use form control or form group and validate city name a required and min length 3 -->
-            <!-- <span *ngIf="form.cityname.$errors.required">Name is required</span> -->
+            <span *ngIf="name.errors?.['required']">City name is required</span>
         </span>
-    </form>
+    
       </div>
       <div>
             <br>
             <button style="background-color: #b0ccda;" id="btnweatherdetails" (click)="GetWeatherdetails()">Check Weather</button>
       </div>
+    <!-- </form> -->
     </div>
   </div>
 <br>
@@ -30,6 +32,7 @@
             <span class="value">{{cityweatherdetails.localtime}}</span>
       </div>
       <div>
+        <!-- TODO - add pipe for formatting number to 2 or 3 place decimal -->
       <div *ngIf="!showTemp_F">
         <label class="key">Temperature (Celcius) : </label>
             <span class="value">{{cityweatherdetails.temp_c}}</span>
