@@ -1,0 +1,48 @@
+<br>
+<br>
+<div style="text-align: center;" >
+    <div>
+      <div>
+        <form name="form">
+        <label class="key">Enter City Name </label>
+            <span>
+            <input name="cityname" type="text" [(ngModel)] ="city" (ngModelChange)="city = $event.toUpperCase()" required minlength = "20" placeholder="Please Enter City"/>
+            <!-- TODO-use form control or form group and validate city name a required and min length 3 -->
+            <!-- <span *ngIf="form.cityname.$errors.required">Name is required</span> -->
+        </span>
+    </form>
+      </div>
+      <div>
+            <br>
+            <button style="background-color: #b0ccda;" id="btnweatherdetails" (click)="GetWeatherdetails()">Check Weather</button>
+      </div>
+    </div>
+  </div>
+<br>
+<div style="text-align: center;" *ngIf ="showDetails">
+    <div>
+      <div>
+        <label class="key">Weather : </label>
+            <span class="value">{{cityweatherdetails.weather}}</span>
+      </div>
+      <div>
+        <label class="key">Local Time : </label>
+            <span class="value">{{cityweatherdetails.localtime}}</span>
+      </div>
+      <div>
+      <div *ngIf="!showTemp_F">
+        <label class="key">Temperature (Celcius) : </label>
+            <span class="value">{{cityweatherdetails.temp_c}}</span>
+      </div>
+      <div *ngIf="showTemp_F">
+        <label class="key">Temperature (Fahrenheit) : </label>
+            <span class="value">{{cityweatherdetails.temp_F}}</span>
+            
+      </div>
+        
+      <button style="background-color: #b0ccda;" id="btnchangetoFarh" (click)="ShowInFarh()">Change To Fahrenheit</button>
+    </div>
+      
+      
+    </div>
+  </div>
