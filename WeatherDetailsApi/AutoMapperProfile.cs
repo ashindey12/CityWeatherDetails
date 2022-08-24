@@ -7,6 +7,7 @@ namespace WeatherDetailsApi
     {
         public AutoMapperProfile()
         {
+            //TODO - add formating for date or number if any and use with method extension for valid checks
             CreateMap<WeatherDetailsDTO, CityWeatherDetails>()
                 .ForMember(dest => dest.Localtime, opt => opt.MapFrom(src => src.Location.Localtime))
                 .ForMember(dest => dest.Temp_c, opt => opt.MapFrom(src => Convert.ToDouble(src.Current.Temp_c)))

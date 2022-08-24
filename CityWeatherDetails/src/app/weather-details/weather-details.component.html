@@ -13,6 +13,7 @@
         </span>
     
       </div>
+
       <div>
             <br>
             <button style="background-color: #b0ccda;" id="btnweatherdetails" (click)="GetWeatherdetails()">Check Weather</button>
@@ -28,6 +29,7 @@
             <span class="value">{{cityweatherdetails.weather}}</span>
       </div>
       <div>
+        <!-- TODO- add pipe to format time in correct mm/dd/yyyy : time format -->
         <label class="key">Local Time : </label>
             <span class="value">{{cityweatherdetails.localtime}}</span>
       </div>
