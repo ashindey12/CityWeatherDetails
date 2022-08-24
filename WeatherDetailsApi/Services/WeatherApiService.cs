@@ -26,14 +26,21 @@ namespace WeatherDetailsApi.Services
         public async Task<WeatherDetailsDTO> GetCurrentWeatherDetails(string CityName)
         {
             var weatherDetails = new WeatherDetailsDTO();
-            var url = $"{_apiConstants?.Url}?q={CityName}";
-            _httpClient.DefaultRequestHeaders.Add("key", _apiConstants?.Key);
-            var response = await _httpClient.GetAsync(url);
-            _logger.LogTrace("Get weather.api called", nameof(WeatherApiService));
-            if(response.IsSuccessStatusCode)
+            if (!string.IsNullOrEmpty(CityName))
             {
-                weatherDetails = await response.Content.ReadFromJsonAsync<WeatherDetailsDTO>();
+                var url = $"{_apiConstants?.Url}?q={CityName}";
+                _httpClient.DefaultRequestHeaders.Add("key", _apiConstants?.Key);
+                var response = await _httpClient.GetAsync(url);
+                //log step by step execution depending on log level configured in nlog
+                //TODO - add nlog or any other third party logging tool
+                _logger.LogTrace("Get weather.api called", nameof(WeatherApiService));
+                if (response.IsSuccessStatusCode)
+                {
+                    weatherDetails = await response.Content.ReadFromJsonAsync<WeatherDetailsDTO>();
+                }
             }
+            //TODO - else we can send the error in custome response model todisplay in UI for user
+            
             return _mapper.Map<WeatherDetailsDTO>(weatherDetails);
         }
     }

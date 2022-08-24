@@ -10,10 +10,7 @@ namespace WeatherDetailsApi.Controllers
     [Produces("application/json")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IWeatherAPI _weatherApi;
@@ -30,6 +27,12 @@ namespace WeatherDetailsApi.Controllers
          * the same response then can be hared by exception handler middlewear
          * 
          */
+        
+        /// <summary>
+        /// display current weather details of specific city
+        /// </summary>
+        /// <param name="cityName"></param>
+        /// <returns></returns>
 
         [HttpGet("getweatherforecastbycity/{cityName}")]
         public async Task<CityWeatherDetails> GetWeatherForecastByCity(string cityName)
