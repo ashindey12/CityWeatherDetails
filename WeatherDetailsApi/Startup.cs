@@ -52,7 +52,7 @@ namespace WeatherDetailsApi
             }
             app.UseHttpsRedirection();
             app.UseCors(_allowedOrigins);
-            app.UseAuthorization();
+            app.UseAuthorization(); // between app.userouting and app.enpoint
             app.UseMiddleware<ExceptionHandleMiddleware>();
             app.MapControllers();
 
